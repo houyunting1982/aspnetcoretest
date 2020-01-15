@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook", "Tweetbook\Tweetbook.csproj", "{B92A8D28-9AB5-4209-9340-7650C6DCAEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook.IntegrationTests", "Tweetbook.IntegrationTests\Tweetbook.IntegrationTests.csproj", "{320B3479-CC5F-490A-B711-775376AD7872}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B92A8D28-9AB5-4209-9340-7650C6DCAEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92A8D28-9AB5-4209-9340-7650C6DCAEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92A8D28-9AB5-4209-9340-7650C6DCAEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92A8D28-9AB5-4209-9340-7650C6DCAEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320B3479-CC5F-490A-B711-775376AD7872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320B3479-CC5F-490A-B711-775376AD7872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320B3479-CC5F-490A-B711-775376AD7872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320B3479-CC5F-490A-B711-775376AD7872}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9483ACF9-41BC-46A9-91B8-C498B22C59EE}
+	EndGlobalSection
+EndGlobal
