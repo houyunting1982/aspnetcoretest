@@ -41,6 +41,10 @@ namespace Tweetbook.Installers
                     x.TokenValidationParameters = tokenValidationParameters;
                 });
 
+            services.AddAuthorization(options => {
+                options.AddPolicy("TagViewer", builder => { builder.RequireClaim("tags.view", "true"); });
+            });
+
             // The doc name must be staying as same as the Version
             services.AddSwaggerGen(x => {
                 x.SwaggerDoc("v1", new OpenApiInfo {

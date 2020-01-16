@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tweetbook.Data;
 
 namespace Tweetbook.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200116002841_Added_Tags")]
+    partial class Added_Tags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,21 +240,6 @@ namespace Tweetbook.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("Tweetbook.Domain.PostTag", b =>
-                {
-                    b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("TagName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("PostId", "TagName");
-
-                    b.HasIndex("TagName");
-
-                    b.ToTable("PostTags");
-                });
-
             modelBuilder.Entity("Tweetbook.Domain.RefreshToken", b =>
                 {
                     b.Property<string>("Token")
@@ -358,21 +345,6 @@ namespace Tweetbook.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Tweetbook.Domain.PostTag", b =>
-                {
-                    b.HasOne("Tweetbook.Domain.Post", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Tweetbook.Domain.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Tweetbook.Domain.RefreshToken", b =>

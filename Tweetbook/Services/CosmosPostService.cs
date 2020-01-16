@@ -62,5 +62,9 @@ namespace Tweetbook.Services
         public async Task<bool> UserOwnsPostAsync(Guid postId, string userId) {
             throw new NotImplementedException();
         }
+
+        public async Task<List<Tag>> GetAllTagsAsync() {
+            throw new NotImplementedException();
+        }
     }
 }
