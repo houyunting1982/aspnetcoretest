@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Tweetbook.Authorization;
 using Tweetbook.Options;
 using Tweetbook.Services;
 
@@ -42,8 +44,13 @@ namespace Tweetbook.Installers
                 });
 
             services.AddAuthorization(options => {
+                options.AddPolicy("MustWorkForPippirunner", policy => {
+                    policy.AddRequirements(new WorksForCompanyRequirement("pippirunner.com"));
+                });
                 //options.AddPolicy("TagViewer", builder => { builder.RequireClaim("tags.view", "true"); });
             });
+
+            services.AddSingleton<IAuthorizationHandler, WorksForCompanyHandler>();
 
             // The doc name must be staying as same as the Version
             services.AddSwaggerGen(x => {
