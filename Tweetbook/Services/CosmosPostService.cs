@@ -66,5 +66,17 @@ namespace Tweetbook.Services
         public async Task<List<Tag>> GetAllTagsAsync() {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> CreateTagAsync(Tag tag) {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Tag> GetTagByNameAsync(string tagName) {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> DeleteTagAsync(string tagName) {
+            throw new NotImplementedException();
+        }
     }
 }

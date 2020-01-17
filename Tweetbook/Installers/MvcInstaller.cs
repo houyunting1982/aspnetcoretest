@@ -42,7 +42,7 @@ namespace Tweetbook.Installers
                 });
 
             services.AddAuthorization(options => {
-                options.AddPolicy("TagViewer", builder => { builder.RequireClaim("tags.view", "true"); });
+                //options.AddPolicy("TagViewer", builder => { builder.RequireClaim("tags.view", "true"); });
             });
 
             // The doc name must be staying as same as the Version

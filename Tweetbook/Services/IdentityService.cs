@@ -17,17 +17,19 @@ namespace Tweetbook.Services
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly DataContext _dataContext;
 
         public IdentityService(UserManager<IdentityUser> userManager,
             JwtSettings jwtSettings,
-            TokenValidationParameters tokenValidationParameters, DataContext dataContext) {
+            TokenValidationParameters tokenValidationParameters, DataContext dataContext, RoleManager<IdentityRole> roleManager) {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
             _tokenValidationParameters = tokenValidationParameters;
             _dataContext = dataContext;
+            _roleManager = roleManager;
         }
 
         public async Task<AuthenticationResult> RegisterAsync(string email, string password) {
@@ -44,6 +46,7 @@ namespace Tweetbook.Services
 
             var newUser = new IdentityUser
             {
+                Id = newUserId.ToString(),
                 Email = email,
                 UserName = email
             };
@@ -54,13 +57,7 @@ namespace Tweetbook.Services
                 };
             }
 
-            try {
-                await _userManager.AddClaimAsync(newUser, new Claim("tags.view", "true"));
-            }
-            catch (Exception e) {
-                Console.WriteLine(e);
-                throw;
-            }
+            //await _userManager.AddClaimAsync(newUser, new Claim("tags.view", "true"));
 
             return await GenerateAuthenticationResultForUser(newUser);
         }
@@ -175,6 +172,23 @@ namespace Tweetbook.Services
 
             var userClaims = await _userManager.GetClaimsAsync(user);
             claims.AddRange(userClaims);
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var userRole in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, userRole));
+                var role = await _roleManager.FindByNameAsync(userRole);
+                if(role == null) continue;
+                var roleClaims = await _roleManager.GetClaimsAsync(role);
+
+                foreach (var roleClaim in roleClaims)
+                {
+                    if(claims.Contains(roleClaim))
+                        continue;
+
+                    claims.Add(roleClaim);
+                }
+            }
 
             var tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(claims),
