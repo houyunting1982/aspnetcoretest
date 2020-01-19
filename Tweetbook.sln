@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook", "Tweetbook\Twee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook.IntegrationTests", "Tweetbook.IntegrationTests\Tweetbook.IntegrationTests.csproj", "{320B3479-CC5F-490A-B711-775376AD7872}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook.Sdk", "Tweetbook.Sdk\Tweetbook.Sdk.csproj", "{E09957E5-9B52-4CD2-892A-2222EC609AF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook.Sdk.Sample", "Tweetbook.Sdk.Sample\Tweetbook.Sdk.Sample.csproj", "{946BB5C0-8442-40EF-BFA5-CE93FD1328E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweetbook.Contracts", "Tweetbook.Contracts\Tweetbook.Contracts.csproj", "{22A3BCA3-EC6B-4FBB-A585-33914ED1FE10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{320B3479-CC5F-490A-B711-775376AD7872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{320B3479-CC5F-490A-B711-775376AD7872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{320B3479-CC5F-490A-B711-775376AD7872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09957E5-9B52-4CD2-892A-2222EC609AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09957E5-9B52-4CD2-892A-2222EC609AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09957E5-9B52-4CD2-892A-2222EC609AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09957E5-9B52-4CD2-892A-2222EC609AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946BB5C0-8442-40EF-BFA5-CE93FD1328E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946BB5C0-8442-40EF-BFA5-CE93FD1328E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946BB5C0-8442-40EF-BFA5-CE93FD1328E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946BB5C0-8442-40EF-BFA5-CE93FD1328E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22A3BCA3-EC6B-4FBB-A585-33914ED1FE10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A3BCA3-EC6B-4FBB-A585-33914ED1FE10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A3BCA3-EC6B-4FBB-A585-33914ED1FE10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A3BCA3-EC6B-4FBB-A585-33914ED1FE10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
