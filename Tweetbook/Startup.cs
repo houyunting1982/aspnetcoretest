@@ -1,9 +1,14 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Tweetbook.Contracts.HealthCheck;
 using Tweetbook.Installers;
 using SwaggerOptions = Tweetbook.Options.SwaggerOptions;
 
@@ -36,6 +41,21 @@ namespace Tweetbook
                 app.UseHsts();
             }
 
+            app.UseHealthChecks("/health", new HealthCheckOptions {
+                ResponseWriter = async (context, report) => {
+                    context.Response.ContentType = "application/json";
+                    var response = new HealthCheckResponse {
+                        Status = report.Status.ToString(),
+                        checks = report.Entries.Select(x => new HealthCheck {
+                            Component = x.Key,
+                            Status = x.Value.Status.ToString(),
+                            Description = x.Value.Description
+                        }),
+                        Duration = report.TotalDuration
+                    };
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
+                }
+            });
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
