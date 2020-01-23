@@ -16,7 +16,7 @@ namespace Tweetbook.Services
             _cosmosStore = cosmosStore;
         }
 
-        public async Task<List<Post>> GetPostsAsync(PaginationFilter paginationFilter) {
+        public async Task<List<Post>> GetPostsAsync(GetAllPostsFilter filter, PaginationFilter paginationFilter) {
             var posts = await _cosmosStore.Query().ToListAsync();
             return posts.Select(x => new Post {
                 Id = Guid.Parse(x.Id),

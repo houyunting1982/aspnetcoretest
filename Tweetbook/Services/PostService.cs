@@ -18,14 +18,16 @@ namespace Tweetbook.Services
             _dataContext = dataContext;
         }
 
-        public async Task<List<Post>> GetPostsAsync(PaginationFilter paginationFilter = null) {
+        public async Task<List<Post>> GetPostsAsync(GetAllPostsFilter filter, PaginationFilter paginationFilter = null) {
+            var queryable = _dataContext.Posts.AsQueryable();
             if (paginationFilter == null) {
-                return await _dataContext.Posts.Include(x => x.Tags).ToListAsync();
+                return await queryable.Include(x => x.Tags).ToListAsync();
             }
 
+            queryable = AddFiltersOnQuery(filter, queryable);
             var skip = (paginationFilter.PageNumber - 1) * paginationFilter.PageSize;
 
-            return await _dataContext.Posts.Include(x => x.Tags)
+            return await queryable.Include(x => x.Tags)
                 .Skip(skip).Take(paginationFilter.PageSize).ToListAsync();
         }
 
@@ -118,6 +120,14 @@ namespace Tweetbook.Services
                 await _dataContext.Tags.AddAsync(new Tag
                     {Name = tag.TagName, CreatedOn = DateTime.UtcNow, CreatorId = post.UserId});
             }
+        }
+
+        private static IQueryable<Post> AddFiltersOnQuery(GetAllPostsFilter filter, IQueryable<Post> queryable) {
+            if (!string.IsNullOrEmpty(filter?.userId)) {
+                queryable = queryable.Where(x => x.UserId == filter.userId);
+            }
+
+            return queryable;
         }
     }
 }
